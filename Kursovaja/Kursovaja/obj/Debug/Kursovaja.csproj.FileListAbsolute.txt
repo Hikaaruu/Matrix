@@ -1,0 +1,13 @@
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\bin\Debug\Kursovaja.exe.config
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\bin\Debug\Kursovaja.exe
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\bin\Debug\Kursovaja.pdb
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.csproj.AssemblyReference.cache
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.csproj.SuggestedBindingRedirects.cache
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.Form1.resources
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.Properties.Resources.resources
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.csproj.GenerateResource.cache
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.csproj.CoreCompileInputs.cache
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.exe
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.pdb
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.Methods.resources
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.ResultForm.resources
