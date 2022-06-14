@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kursovaja.Classes
 {
@@ -205,11 +201,6 @@ namespace Kursovaja.Classes
             result.ProcessFunctionOverData((i, j) => result[i, j] = Values[i, j]);
             return result;
         }
-
-        //public Matrix EigenvaluesKrilov()
-        //{
-
-        //}
 
         #endregion
     }

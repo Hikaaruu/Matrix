@@ -11,3 +11,4 @@ C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kurs
 C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.pdb
 C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.Methods.resources
 C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.ResultForm.resources
+C:\Users\FARM_KRIPOV\Desktop\Курсовая\Kursovaja\Kursovaja\obj\Debug\Kursovaja.GraphForm.resources

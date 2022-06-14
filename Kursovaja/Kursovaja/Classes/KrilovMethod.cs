@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Kursovaja.Classes
 {
-    class KrilovMethod
+    class KrilovMethod : BaseMethod
     {
         // ищет начальный вектор
         private static Matrix CreateStartVector(Matrix m)
@@ -43,25 +41,6 @@ namespace Kursovaja.Classes
             return result;
         }
 
-        //приводит вектор к ортонормированой системе векторов
-        private static Matrix NormalizeVec(Matrix matrix)
-        {
-            Matrix result = (Matrix)matrix.Clone();
-
-            double sum = 0;
-            for (int i = 0; i < matrix.Rows; i++)
-            {
-                sum += Math.Pow(matrix[i, 0], 2);
-            }
-            sum = Math.Sqrt(sum);
-            for (int i = 0; i < matrix.Rows; i++)
-            {
-                result[i, 0] = matrix[i, 0] / sum;
-            }
-
-            return result;
-        }
-
         //решает систему уравнений методом Крамера
         private static double[] SolveSystem(Matrix a)
         {
@@ -91,93 +70,6 @@ namespace Kursovaja.Classes
             }
 
             return result;
-        }
-
-        //возвращает значение функции при заданом 
-        private static double FuncValue(double[] solved_system, double x)
-        {
-            double result = Math.Pow(x, solved_system.Length);
-            for (int i = 0; i < solved_system.Length; i++)
-            {
-                result -= Math.Pow(x, solved_system.Length - 1 - i) * solved_system[i];
-            }
-
-            return result;
-        }
-
-        // решает полином  методом половинного деления
-        private static List<double> SolvePolinom(double[] solved_system)
-        {
-
-            const double step = 0.1;
-            const double start = -1000;
-            const double end = 1000;
-
-
-            double x0 = FuncValue(solved_system, start - step);
-
-            List<double> result_x0 = new List<double>();
-            List<double> result_x1 = new List<double>();
-
-            List<double> result = new List<double>();
-
-            double x1;
-            for (double i = start; i < end; i += step)
-            {
-                x1 = FuncValue(solved_system, i);
-
-                if (x0 * x1 < 0)
-                {
-                    result_x0.Add(i - step);
-                    result_x1.Add(i);
-                }
-
-                x0 = x1;
-                Console.WriteLine((i - start) / (end - start) * 100 + " %");
-            }
-
-
-            for (int i = 0; i < result_x0.Count; i++)
-            {
-                result.Add(BisectionMethod(solved_system, result_x0[i], result_x1[i]));
-            }
-
-            return result;
-        }
-
-        //реализация метода половинного деления 
-        private static double BisectionMethod(double[] solved_system, double a, double b, double epsilon = 0.0001)
-        {
-
-            double x1 = a;
-            double x2 = b;
-            double fx1;
-            double fx2;
-            double fb = FuncValue(solved_system, b);
-            double midpt;
-            double fmidpt;
-            while (true)
-            {
-                fx1 = FuncValue(solved_system, x1);
-                fx2 = FuncValue(solved_system, x2);
-
-                midpt = 0.5 * (x1 + x2);
-                fmidpt = FuncValue(solved_system, midpt);
-
-                if (Math.Abs(fmidpt) < epsilon)
-                {
-                    return midpt;
-                }
-                if (fmidpt * fx1 < 0)
-                {
-                    x2 = midpt;
-                }
-                if (fmidpt * fx2 < 0)
-                {
-                    x1 = midpt;
-                }
-            }
-
         }
 
         // ищет собственные векторы матрицы
@@ -218,14 +110,14 @@ namespace Kursovaja.Classes
             return result;
         }
 
-        //полная реализация метода крылова
-        public static List<double> Calculate(Matrix input, out List<Matrix> vectors)
+        //полная реализация метода Крылова
+        public static List<double> Calculate(Matrix input, out List<Matrix> vectors, double step, ProgressBar progress)
         {
             Matrix system = FindSystem(input);
 
             double[] solved_system = SolveSystem(system);
 
-            List<double> roots = SolvePolinom(solved_system);
+            List<double> roots = SolvePolinom(solved_system, step, progress);
 
             vectors = FindVectors(solved_system, roots, system);
 
