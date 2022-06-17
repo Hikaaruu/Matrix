@@ -76,7 +76,7 @@ namespace Kursovaja.Classes
                 midpt = 0.5 * (x1 + x2);
                 fmidpt = FuncValue(solved_system, midpt);
 
-                if ((x2 - x1) < epsilon)
+                if (Math.Abs(x2 - x1) < epsilon)
                 {
                     return midpt;
                 }
@@ -153,6 +153,23 @@ namespace Kursovaja.Classes
                 Console.WriteLine((i - start) / (end - start) * 100 + " %");
                 progress.Value = Convert.ToInt32((i - start) / (end - start) * 100) < 1 ? 1 : Convert.ToInt32((i - start) / (end - start) * 100);
             }
+
+            #region calculate dop points
+            TransferData.DopPoints = new List<Structs.Point>();
+            try
+            {
+                for (double i = -10; i <= 10; i += 0.01)
+                {
+                    x1 = FuncValue(solved_system, i);
+                    TransferData.DopPoints.Add(new Structs.Point(i, x1));
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            #endregion
 
 
             for (int i = 0; i < result_x0.Count; i++)

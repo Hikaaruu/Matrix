@@ -37,9 +37,9 @@ namespace Kursovaja
             #region no roots situation
             if (TransferData.Roots.Count == 0)
             {
+
+                #region label configuration
                 Label label = new Label();
-
-
                 label.Text = "Корені не знайдено ( ˘︹˘ )\n Можливо варто змінити крок пошуку!";
                 label.Width = 200;
                 label.Height = 90;
@@ -48,13 +48,12 @@ namespace Kursovaja
                 label.Left = 38;
                 label.Top = 0;
                 label.TextAlign = ContentAlignment.MiddleCenter;
-
-
                 Width = 300;
                 Height = 150;
                 Controls.Add(label);
+                #endregion
 
-
+                #region button configuration
                 Button btn1 = new Button();
                 btn1.Text = "Побудувати графік";
                 btn1.Height = 25;
@@ -63,6 +62,7 @@ namespace Kursovaja
                 btn1.Top = Height - 75;
                 btn1.Click += new EventHandler(btn_Click);
                 Controls.Add(btn1);
+                #endregion
 
                 return;
             }

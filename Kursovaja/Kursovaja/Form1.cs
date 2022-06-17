@@ -54,6 +54,7 @@ namespace Kursovaja
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             #region prep
             label2.Visible = false;
             progressBar1.Visible = false;
@@ -198,6 +199,43 @@ namespace Kursovaja
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                double result;
+                bool check = double.TryParse(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Replace(".", ","), out result);
+
+
+                if (check)
+                {
+                    if (Math.Abs(result) >= 1000)
+                    {
+                        if (result < 0)
+                        {
+                            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = result.ToString().Substring(0, 4);
+                        }
+                        else
+                        {
+                            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = result.ToString().Substring(0, 3);
+                        }
+                        
+                    }
+                    return;
+                }
+            }
+            else
+            {
+                dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
+            }
 
         }
     }

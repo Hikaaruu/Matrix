@@ -16,5 +16,7 @@ namespace Kursovaja.Classes
         public static bool AnalyticData { get; set; }
 
         public static List<Point> Points { get; set; }
+
+        public static List<Point> DopPoints { get; set; }
     }
 }

@@ -98,6 +98,8 @@
             this.dataGridView1.RowTemplate.Height = 37;
             this.dataGridView1.Size = new System.Drawing.Size(658, 480);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // numericUpDown1
             // 
