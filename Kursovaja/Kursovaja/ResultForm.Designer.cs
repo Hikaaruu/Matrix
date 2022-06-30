@@ -36,8 +36,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1208, 768);
+            this.ClientSize = new System.Drawing.Size(982, 153);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(1000, 1200);
+            this.MinimumSize = new System.Drawing.Size(200, 200);
             this.Name = "ResultForm";
             this.Text = "Result";
             this.Load += new System.EventHandler(this.result_form_Load);

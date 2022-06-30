@@ -1,0 +1,15 @@
+Matrix :
+
+0,10     0,20     
+
+1,00     0,00     
+
+
+
+Method : Fadeeva        Step = 0,001
+
+
+Result :
+
+y0 = -0,40    vec0 = ( -0,37   0,93 )
+

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using Kursovaja.Classes;
 
@@ -11,7 +8,7 @@ namespace Kursovaja
     internal class Methods
     {
 
-        public static  Matrix GetMatrixFromGrid(DataGridView grid)
+        public static Matrix GetMatrixFromGrid(DataGridView grid)
         {
             Matrix result = new Matrix(grid.RowCount, grid.ColumnCount);
             DataGridViewRow row;
@@ -27,8 +24,8 @@ namespace Kursovaja
                         result[i, j] = 0;
                     }
                     else
-                    {                        
-                        check = double.TryParse(row.Cells[j].Value.ToString().Replace('.',','), out temp );
+                    {
+                        check = double.TryParse(row.Cells[j].Value.ToString().Replace('.', ','), out temp);
 
                         if (!check)
                         {
@@ -39,7 +36,7 @@ namespace Kursovaja
                             result[i, j] = temp;
                         }
                     }
-                    
+
                 }
             }
 
@@ -48,7 +45,7 @@ namespace Kursovaja
 
         public static void PopulateContainer(GroupBox gb, ResultForm form, int index)
         {
-
+            #region prep
             const int grid_top = 40;
             const int cell_height = 37;
 
@@ -57,6 +54,7 @@ namespace Kursovaja
             grid.ColumnHeadersVisible = false;
             grid.AllowUserToAddRows = false;
             grid.AllowUserToDeleteRows = false;
+            grid.ReadOnly = true;
             grid.AllowUserToOrderColumns = false;
             grid.AllowUserToResizeRows = false;
             grid.AllowUserToResizeColumns = false;
@@ -71,12 +69,9 @@ namespace Kursovaja
             grid.Top = grid_top;
             grid.Left = 20;
             grid.Height = TransferData.Vectors[0].Rows * cell_height + 4;
+            #endregion
 
-            //Label label = new Label();
-            //label.Height = 45;
-            //label.Width = 40;
-            //label.Text = "y" + (index + 1).ToString() + " = " + TransferData.Roots[index].ToString();
-
+            #region populating vector
             for (int i = 0; i < TransferData.Vectors[index].Rows; i++)
             {
                 grid.Rows.Add();
@@ -88,6 +83,78 @@ namespace Kursovaja
             gb.Width = 100;
             gb.Text = "y" + (index + 1).ToString() + " = " + string.Format("{0:0.00}", TransferData.Roots[index]).ToString();
             gb.Controls.Add(grid);
+            #endregion
         }
+
+        public static void WriteResultInFile(StreamWriter sw, Matrix a, List<double> roots, List<Matrix> vectors, int method, double step)
+        {
+
+            #region writing matrix in file
+            sw.WriteLine("Matrix :");
+            sw.WriteLine();
+
+            for (int i = 0; i < a.Rows; i++)
+            {
+                for (int j = 0; j < a.Columns; j++)
+                {
+                    sw.Write(string.Format("{0:0.00}", a[i, j]).ToString().PadRight(9));
+                }
+                sw.WriteLine();
+                sw.WriteLine();
+            }
+            #endregion
+
+            #region writing in file method and step of search
+            string s_method = method == 0 ? "Krilova" : "Fadeeva";
+
+            sw.WriteLine();
+            sw.WriteLine();
+            sw.WriteLine("Method : {0}        Step = {1}", s_method, step.ToString());
+            sw.WriteLine();
+            sw.WriteLine();
+            #endregion
+
+            #region writing result
+            sw.WriteLine("Result :");
+            sw.WriteLine();
+
+
+            if (roots.Count == 0)
+            {
+                sw.WriteLine("Корені не знайдено :(\nМожливо варто змінити крок пошуку!");
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < roots.Count; i++)
+                {
+                    sw.Write("y{0} = {1}    ", i, string.Format("{0:0.00}", roots[i]));
+                    sw.Write("vec{0} = ", i);
+
+
+                    sw.Write("( ");
+                    for (int j = 0; j < vectors[0].Rows; j++)
+                    {
+                        sw.Write(string.Format("{0:0.00}", vectors[i][j, 0]));
+                        if (j!=vectors[0].Rows-1)
+                        {
+                            sw.Write("   ");
+                        }
+                        else
+                        {
+                            sw.Write(" ");
+                        }
+                    }
+                    sw.Write(")");
+
+                    sw.WriteLine();
+                    sw.WriteLine();
+                }
+            }
+            #endregion
+
+
+        }
+
     }
 }
